@@ -3,8 +3,7 @@
   "installCommand": "npm install",
   "outputDirectory": "dist",
   "framework": "vite",
-  "env": {
-    "VITE_SUPABASE_URL": "https://igmroqteqboxmkruemot.supabase.co",
-    "VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnbXJvcXRlcWJveG1rcnVlbW90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNzE0ODIsImV4cCI6MjA4ODk0NzQ4Mn0.3g5tdeA_2NeRVBiMoA2XGSGKJOc_67lKxFkl81HmwfU"
-  }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
