@@ -50,7 +50,7 @@ const DatasetView = () => {
 
         await supabase.from('images').insert({
           projectId: id,
-          filename: file.name,
+          fileName: file.name,
           storageUrl: data.path,
           split: 'train',
           annotated: false,
@@ -73,7 +73,7 @@ const DatasetView = () => {
         projectId: id,
         exportDate: new Date().toISOString(),
         images: filteredImages.map(img => ({
-          filename: img.filename,
+          fileName: img.fileName,
           split: img.split,
           annotated: img.annotated,
         })),
@@ -99,7 +99,7 @@ const DatasetView = () => {
   const filteredImages = images.filter(img => {
     const matchesFilter =
       filter === 'all' || (filter === 'annotated' && img.annotated) || (filter === 'unlabeled' && !img.annotated);
-    const matchesSearch = img.filename.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch = img.fileName.toLowerCase().includes(search.toLowerCase());
     return matchesFilter && matchesSearch;
   });
 
@@ -172,12 +172,12 @@ const DatasetView = () => {
             >
               <img
                 src={`${supabase.storage.from('project-images').getPublicUrl(img.storageUrl).data.publicUrl}`}
-                alt={img.filename}
+                alt={img.fileName}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform"
               />
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
                 <div className="w-full p-2 bg-gray-900/80">
-                  <p className="text-xs text-white truncate">{img.filename}</p>
+                  <p className="text-xs text-white truncate">{img.fileName}</p>
                   <span className={`text-xs font-medium ${img.annotated ? 'text-green-400' : 'text-yellow-400'}`}>
                     {img.annotated ? 'Annotated' : 'Unlabeled'}
                   </span>
